@@ -104,7 +104,10 @@ beans = {
 
     marshallerRegistrarService(MarshallerRegistrarService)
 
-    def transmartSecurity = grailsApplication.config.org.transmart.security
+	    def transmartSecurity = grailsApplication.config.org.transmart.security
+	
+	
+	
     if (SpringSecurityUtils.securityConfig.ldap.active) {
         ldapUserDetailsMapper(com.recomdata.security.LdapAuthUserDetailsMapper) {
             springSecurityService = ref('springSecurityService')

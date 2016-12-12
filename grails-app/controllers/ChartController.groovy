@@ -488,103 +488,107 @@ class ChartController {
             log.debug("raceResults2: " + raceResults2)
         }
 
+		
+		//TODO Baumjamin
         HashMap<String, Integer> race1 = new HashMap<String, Integer>();
-        HashMap<String, Integer> race2 = new HashMap<String, Integer>();
-        // filter cases where there are zero subjects of a given race
-        if (s1) {
-            Iterator itr = raceResults1.keySet().iterator();
-            while (itr.hasNext()) {
-                String s = itr.next()
-                log.trace("examining: " + s + ", count:" + raceResults1.get(s))
-                if (raceResults1.get(s) != 0) {
-                    race1.put(s, raceResults1.get(s));
-                    race2.put(s, 0);
-                    log.trace("added to race1, race2")
-                }
-            }
-            log.trace("race1: " + race1)
-        }
-
-        if (s2) {
-            Iterator itr = raceResults2.keySet().iterator();
-            while (itr.hasNext()) {
-                String s = itr.next()
-                log.trace("examining " + s + ", count:" + raceResults2.get(s))
-                if (raceResults2.get(s) != 0) {
-                    race2.put(s, raceResults2.get(s));
-                    log.trace("added to race2")
-                    if (!race1.containsKey(s)) {
-                        race1.put(s, 0)
-                        log.trace("also added to race2")
-                    }
-                }
-            }
-            log.trace("race2: " + race2)
-        }
-
-        pw.write("</td></tr>");
-        pw.write("<tr><td width='50%' align='center'>");
-        if (s1) {
-            pw.write("<br>");
-            // HashMap<String, Integer> race1=i2b2HelperService.getPatientDemographicDataForSubset("race_cd", result_instance_id1);
-            JFreeChart chart = createConceptAnalysisPieChart(hashMapToPieDataset(race1, "Race"), "Race");
-            info7 = new ChartRenderingInfo(new StandardEntityCollection());
-            filename7 = ServletUtilities.saveChartAsJPEG(chart, 300, 200, info7, request.getSession());
-            graphURL7 = request.getContextPath() + "/chart/displayChart?filename=" + filename7;
-            pw.write("<img src='" + graphURL7 + "' width=300 height=200 border=0 usemap='#" + filename7 + "'>");
-            ChartUtilities.writeImageMap(pw, filename7, info7, false);
-            //pw.write("<b>Race</b>");
-            renderCategoryResultsHashMap(race1, "Subset 1", i2b2HelperService.getPatientSetSize(result_instance_id1), pw);
-        }
-
+//        HashMap<String, Integer> race2 = new HashMap<String, Integer>();
+//        // filter cases where there are zero subjects of a given race
+//        if (s1) {
+//            Iterator itr = raceResults1.keySet().iterator();
+//            while (itr.hasNext()) {
+//                String s = itr.next()
+//                log.trace("examining: " + s + ", count:" + raceResults1.get(s))
+//                if (raceResults1.get(s) != 0) {
+//                    race1.put(s, raceResults1.get(s));
+//                    race2.put(s, 0);
+//                    log.trace("added to race1, race2")
+//                }
+//            }
+//            log.trace("race1: " + race1)
+//        }
+//
+//        if (s2) {
+//            Iterator itr = raceResults2.keySet().iterator();
+//            while (itr.hasNext()) {
+//                String s = itr.next()
+//                log.trace("examining " + s + ", count:" + raceResults2.get(s))
+//                if (raceResults2.get(s) != 0) {
+//                    race2.put(s, raceResults2.get(s));
+//                    log.trace("added to race2")
+//                    if (!race1.containsKey(s)) {
+//                        race1.put(s, 0)
+//                        log.trace("also added to race2")
+//                    }
+//                }
+//            }
+//            log.trace("race2: " + race2)
+//        }
+//
+//        pw.write("</td></tr>");
+//        pw.write("<tr><td width='50%' align='center'>");
+//        if (s1) {
+//            pw.write("<br>");
+//            // HashMap<String, Integer> race1=i2b2HelperService.getPatientDemographicDataForSubset("race_cd", result_instance_id1);
+//            JFreeChart chart = createConceptAnalysisPieChart(hashMapToPieDataset(race1, "Race"), "Race");
+//            info7 = new ChartRenderingInfo(new StandardEntityCollection());
+//            filename7 = ServletUtilities.saveChartAsJPEG(chart, 300, 200, info7, request.getSession());
+//            graphURL7 = request.getContextPath() + "/chart/displayChart?filename=" + filename7;
+//            pw.write("<img src='" + graphURL7 + "' width=300 height=200 border=0 usemap='#" + filename7 + "'>");
+//            ChartUtilities.writeImageMap(pw, filename7, info7, false);
+//            //pw.write("<b>Race</b>");
+//            renderCategoryResultsHashMap(race1, "Subset 1", i2b2HelperService.getPatientSetSize(result_instance_id1), pw);
+//        }
+//
         pw.write("</td><td width='50%' align='center'>");
-
-        if (s2) {
-            pw.write("<br>");
-            // HashMap<String, Integer> race2=i2b2HelperService.getPatientDemographicDataForSubset("race_cd", result_instance_id2);
-            JFreeChart chart = createConceptAnalysisPieChart(hashMapToPieDataset(race2, "Race"), "Race");
-            info7 = new ChartRenderingInfo(new StandardEntityCollection());
-            filename7 = ServletUtilities.saveChartAsJPEG(chart, 300, 200, info7, request.getSession());
-            graphURL7 = request.getContextPath() + "/chart/displayChart?filename=" + filename7;
-            pw.write("<img src='" + graphURL7 + "' width=300 height=200 border=0 usemap='#" + filename7 + "'>");
-            ChartUtilities.writeImageMap(pw, filename7, info7, false);
-            //pw.write("<b>Race</b>");
-            renderCategoryResultsHashMap(race2, "Subset 2", i2b2HelperService.getPatientSetSize(result_instance_id2), pw);
-        }
-
+//
+//        if (s2) {
+//            pw.write("<br>");
+//            // HashMap<String, Integer> race2=i2b2HelperService.getPatientDemographicDataForSubset("race_cd", result_instance_id2);
+//            JFreeChart chart = createConceptAnalysisPieChart(hashMapToPieDataset(race2, "Race"), "Race");
+//            info7 = new ChartRenderingInfo(new StandardEntityCollection());
+//            filename7 = ServletUtilities.saveChartAsJPEG(chart, 300, 200, info7, request.getSession());
+//            graphURL7 = request.getContextPath() + "/chart/displayChart?filename=" + filename7;
+//            pw.write("<img src='" + graphURL7 + "' width=300 height=200 border=0 usemap='#" + filename7 + "'>");
+//            ChartUtilities.writeImageMap(pw, filename7, info7, false);
+//            //pw.write("<b>Race</b>");
+//            renderCategoryResultsHashMap(race2, "Subset 2", i2b2HelperService.getPatientSetSize(result_instance_id2), pw);
+//        }
+//
         pw.write("</td></tr></table>");
 
-        /*get all distinct  concepts for analysis from both subsets into hashmap*/
-        List<String> keys = i2b2HelperService.getConceptKeysInSubsets(result_instance_id1, result_instance_id2);
+		
+		//TODO baumjamin
+//        /*get all distinct  concepts for analysis from both subsets into hashmap*/
+//        List<String> keys = i2b2HelperService.getConceptKeysInSubsets(result_instance_id1, result_instance_id2);
         pw.write("<hr>");
-        pw.write("<table width='100%'><tr><td align='center'><div class='analysistitle'>Analysis of concepts found in Subsets</div></td></tr></table>");
+//        pw.write("<table width='100%'><tr><td align='center'><div class='analysistitle'>Analysis of concepts found in Subsets</div></td></tr></table>");
         pw.write("<hr>");
-        /*Analyze each concept in subsets*/
-
-        log.debug("Keys: " + keys);
-        Set<String> distinctConcepts = i2b2HelperService.getDistinctConceptSet(result_instance_id1, result_instance_id2);
-        Set<String> uniqueConcepts = new HashSet<String>();
-
-        for (c in distinctConcepts) {
-            String uKey = i2b2HelperService.getConceptKeyForAnalysis(c);
-            uniqueConcepts.add(uKey);
-        }
-
-        log.debug("Unique concepts: " + uniqueConcepts);
-
-        // for (int i = 0; i < keys.size(); i++)
-        for (k in uniqueConcepts) {
-            //String analysis_key = i2b2HelperService.getConceptKeyForAnalysis(keys.get(i));
-            //String analysis_key = i2b2HelperService.getConceptKeyForAnalysis(k);
-            String analysis_key = k;
-            if (analysis_key.indexOf("SECURITY") > -1) {
-                continue;
-            }
-            //log.trace("Analysis Key: "+i+", "+analysis_key);
-            log.debug("calling renderConceptAnalysisNew from basic statistics:\tk:" + k + "\tanalysis_key:" + analysis_key);
-            renderConceptAnalysisNew(analysis_key, result_instance_id1, result_instance_id2, pw, request);
-            pw.write("<hr>");
-        }
+//        /*Analyze each concept in subsets*/
+//
+//        log.debug("Keys: " + keys);
+//        Set<String> distinctConcepts = i2b2HelperService.getDistinctConceptSet(result_instance_id1, result_instance_id2);
+//        Set<String> uniqueConcepts = new HashSet<String>();
+//
+//        for (c in distinctConcepts) {
+//            String uKey = i2b2HelperService.getConceptKeyForAnalysis(c);
+//            uniqueConcepts.add(uKey);
+//        }
+//
+//        log.debug("Unique concepts: " + uniqueConcepts);
+//
+//        // for (int i = 0; i < keys.size(); i++)
+//        for (k in uniqueConcepts) {
+//            //String analysis_key = i2b2HelperService.getConceptKeyForAnalysis(keys.get(i));
+//            //String analysis_key = i2b2HelperService.getConceptKeyForAnalysis(k);
+//            String analysis_key = k;
+//            if (analysis_key.indexOf("SECURITY") > -1) {
+//                continue;
+//            }
+//            //log.trace("Analysis Key: "+i+", "+analysis_key);
+//            log.debug("calling renderConceptAnalysisNew from basic statistics:\tk:" + k + "\tanalysis_key:" + analysis_key);
+//            renderConceptAnalysisNew(analysis_key, result_instance_id1, result_instance_id2, pw, request);
+//            pw.write("<hr>");
+//        }
         /*test harness*//*
         ExportTableNew table=new ExportTableNew();
         addAllPatientDemographicDataForSubsetToTable(table, result_instance_id1, "subset1");
@@ -1020,7 +1024,7 @@ for (int i = 0; i < mapsize; i++)
                 true,
                 false);
         TextTitle mytitle = chart.getTitle();
-        mytitle.setToolTipText("A title tooltip!");
+        //mytitle.setToolTipText("A title tooltip!");
         mytitle.setFont(new Font("SansSerif", Font.BOLD, 12));
 
         PiePlot plot = (PiePlot) chart.getPlot();

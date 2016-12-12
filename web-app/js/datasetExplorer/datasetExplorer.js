@@ -471,9 +471,12 @@ Ext.onReady(function () {
             activate: function (p) {
                 if (isSubsetQueriesChanged(p.subsetQueries) || !Ext.get('analysis_title')) {
                     p.body.mask("Loading...", 'x-mask-loading');
+                    console.debug(p);
+                    console.debug("running queries")
                     runAllQueries(getSummaryStatistics, p);
                     activateTab();
                     onWindowResize();
+                    
                 }
             },
             deactivate: function() {
@@ -2085,7 +2088,7 @@ function exportDataFinished() {
 }
 
 function runAllQueries(callback, panel) {
-
+	console.debug("Running runAllQueries");
     if (isSubsetEmpty(1) && isSubsetEmpty(2)) {
         if (panel) {
             panel.body.unmask();
@@ -2094,7 +2097,7 @@ function runAllQueries(callback, panel) {
         return;
     }
 
-    panel.body.unmask();
+    //panel.body.unmask();
     for (var i = 1; i <= GLOBAL.NumOfSubsets; i++) {
         if (isSubsetOnlyExclude(i)) {
             if (panel) {
@@ -2213,9 +2216,7 @@ function runQueryComplete(result, subset, callback) {
     } else if (jsonRes.errorMessage !== null) {
         error = jsonRes.errorMessage;
     }
-
     queryPanel.el.unmask();
-
     if (error) {
         Ext.Msg.show({
             title: 'Error generating patient set',

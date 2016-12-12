@@ -1331,6 +1331,7 @@ class I2b2HelperService {
         return tablein;
     }
 
+	//TODO baumjamin
     def fetchConceptData(concept_key,result_instance_id){
         def valueLeafNodeFlag = isValueConceptKey(concept_key)
         def dataList = []
